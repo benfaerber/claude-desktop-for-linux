@@ -118,15 +118,6 @@ npm run tauri build
 
 The AppImage will be created in `src-tauri/target/release/bundle/appimage/`
 
-### Troubleshooting
-
-**Missing dependencies**: If you get build errors about missing packages, ensure all system dependencies are installed (see Prerequisites).
-
-**Icons not updating**: If you change icon files, trigger a rebuild:
-```bash
-touch src-tauri/src/lib.rs
-```
-
 ---
 
 ## Tech Stack
