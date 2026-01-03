@@ -59,6 +59,14 @@ Alternatively, download the latest AppImage from the [Releases](https://github.c
 
 ## For Developers
 
+PRs welcome, come join the fun!
+
+## Ideas for First Time Contributors:
+- Open Claude keyboard shortcut
+- Take a screenshot and upload to Claude
+- Chat export to JSON / Markdown
+- Fix Sign in with Google
+
 ### Prerequisites
 
 #### System Dependencies
@@ -127,7 +135,3 @@ touch src-tauri/src/lib.rs
 - [React](https://react.dev/) - UI framework
 - [Vite](https://vitejs.dev/) - Build tool
 - Rust - Backend
-
-## License
-
-MIT
