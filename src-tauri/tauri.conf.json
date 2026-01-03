@@ -16,8 +16,7 @@
         "width": 1400,
         "height": 900,
         "resizable": true,
-        "fullscreen": false,
-        "url": "https://claude.ai"
+        "fullscreen": false
       }
     ],
     "security": {
