@@ -21,16 +21,8 @@
       }
     ],
     "security": {
-      "csp": null,
-      "dangerousRemoteDomainIpcAccess": [
-        {
-          "domain": "claude.ai",
-          "windows": ["main"],
-          "enableTauriAPI": false
-        }
-      ]
-    },
-    "withGlobalTauri": false
+      "csp": null
+    }
   },
   "bundle": {
     "active": true,
