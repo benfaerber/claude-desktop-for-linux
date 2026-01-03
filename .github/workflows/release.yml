@@ -40,34 +40,10 @@ jobs:
       - name: Build Tauri app
         run: npm run tauri build
 
-      - name: Get version from tag
-        id: get_version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
-
-      - name: Find AppImage
-        id: find_appimage
-        run: |
-          APPIMAGE=$(find src-tauri/target/release/bundle/appimage -name "*.AppImage" -type f | head -n 1)
-          echo "APPIMAGE_PATH=$APPIMAGE" >> $GITHUB_OUTPUT
-          echo "APPIMAGE_NAME=$(basename $APPIMAGE)" >> $GITHUB_OUTPUT
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Release and Upload AppImage
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Claude Desktop ${{ steps.get_version.outputs.VERSION }}
+          files: src-tauri/target/release/bundle/appimage/*.AppImage
+          generate_release_notes: true
           draft: false
           prerelease: false
-
-      - name: Upload AppImage to Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ steps.find_appimage.outputs.APPIMAGE_PATH }}
-          asset_name: ${{ steps.find_appimage.outputs.APPIMAGE_NAME }}
-          asset_content_type: application/vnd.appimage
