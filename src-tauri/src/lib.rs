@@ -1,7 +1,7 @@
 use tauri::{
     menu::{MenuBuilder, MenuItemBuilder},
     tray::{TrayIconBuilder, TrayIconEvent},
-    Manager,
+    Manager, Url,
 };
 
 #[tauri::command]
@@ -24,6 +24,15 @@ pub fn run() {
                     let tauri_icon = tauri::image::Image::new_owned(rgba.into_raw(), width, height);
                     let _ = window.set_icon(tauri_icon);
                 }
+
+                window.on_navigation(|url| {
+                    if let Ok(parsed) = Url::parse(url) {
+                        if let Some(host) = parsed.host_str() {
+                            return host.ends_with("claude.ai") || host.ends_with("anthropic.com");
+                        }
+                    }
+                    true
+                });
             }
 
             let show_item = MenuItemBuilder::with_id("show", "Open Claude").build(app)?;
