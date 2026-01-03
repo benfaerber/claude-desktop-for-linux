@@ -13,7 +13,6 @@
 - Native desktop wrapper for claude.ai
 - System tray integration
 - Quick access via tray icon
-- Custom Claude branding and icon
 - Fast and lightweight
 
 ---
