@@ -16,12 +16,21 @@
         "width": 1400,
         "height": 900,
         "resizable": true,
-        "fullscreen": false
+        "fullscreen": false,
+        "url": "https://claude.ai"
       }
     ],
     "security": {
-      "csp": null
-    }
+      "csp": null,
+      "dangerousRemoteDomainIpcAccess": [
+        {
+          "domain": "claude.ai",
+          "windows": ["main"],
+          "enableTauriAPI": false
+        }
+      ]
+    },
+    "withGlobalTauri": false
   },
   "bundle": {
     "active": true,
