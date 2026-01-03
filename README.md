@@ -20,11 +20,25 @@
 
 ## For Users
 
-### Download
+### Quick Install (Recommended)
 
-Download the latest AppImage from the [Releases](https://github.com/benfaerber/claude-desktop-for-linux/releases) page.
+Install with a single command:
 
-### Installation
+```bash
+curl -sSL https://raw.githubusercontent.com/benfaerber/claude-desktop-for-linux/master/scripts/install.sh | bash
+```
+
+This will automatically:
+- Download the latest AppImage
+- Install to `~/.local/bin/claude-desktop`
+- Create a desktop entry
+- Add the app to your application menu
+
+### Manual Installation
+
+Alternatively, download the latest AppImage from the [Releases](https://github.com/benfaerber/claude-desktop-for-linux/releases) page.
+
+#### Steps
 
 1. Download the `.AppImage` file from releases
 2. Make it executable:
@@ -35,27 +49,6 @@ Download the latest AppImage from the [Releases](https://github.com/benfaerber/c
    ```bash
    ./Claude_*.AppImage
    ```
-
-### Optional: Add to Applications Menu
-
-To add Claude Desktop to your applications menu:
-
-```bash
-# Move the AppImage to a permanent location
-mkdir -p ~/.local/bin
-mv Claude_*.AppImage ~/.local/bin/claude-desktop
-
-# Create desktop entry
-cat > ~/.local/share/applications/claude-desktop.desktop << 'EOF'
-[Desktop Entry]
-Name=Claude Desktop
-Exec=/home/$USER/.local/bin/claude-desktop
-Type=Application
-Categories=Network;
-Icon=claude
-Terminal=false
-EOF
-```
 
 ### Usage
 
