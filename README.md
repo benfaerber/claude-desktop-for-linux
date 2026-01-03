@@ -1,6 +1,12 @@
 # Claude Desktop
 
-A native Linux desktop application for Claude AI, built with Tauri and React.
+<p align="center">
+  <img src="public/claude-ai-icon.svg" width="200" alt="Claude Desktop Icon">
+</p>
+
+<p align="center">
+  A native Linux desktop application for Claude AI, built with Tauri and React.
+</p>
 
 ## Features
 
