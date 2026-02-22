@@ -1,0 +1,48 @@
+{
+  "name": "claude-desktop",
+  "version": "1.0.0",
+  "description": "Claude Desktop for Linux — a native wrapper around claude.ai",
+  "main": "dist/main/main.js",
+  "author": "ben",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && electron .",
+    "dev": "tsc && electron .",
+    "dist": "npm run build && electron-builder --linux",
+    "dist:deb": "npm run build && electron-builder --linux deb",
+    "dist:appimage": "npm run build && electron-builder --linux AppImage",
+    "dist:rpm": "npm run build && electron-builder --linux rpm"
+  },
+  "build": {
+    "appId": "com.claude.desktop",
+    "productName": "Claude Desktop",
+    "directories": {
+      "output": "release"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "assets/icons",
+      "category": "Network",
+      "desktop": {
+        "Name": "Claude Desktop",
+        "Comment": "Claude AI Desktop Client",
+        "Terminal": "false",
+        "Type": "Application",
+        "Categories": "Network;Chat;"
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "electron": "^34.0.0",
+    "electron-builder": "^25.0.0",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "electron-store": "^10.0.0"
+  }
+}
