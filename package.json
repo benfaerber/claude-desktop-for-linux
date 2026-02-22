@@ -3,16 +3,20 @@
   "version": "1.0.0",
   "description": "Claude Desktop for Linux — a native wrapper around claude.ai",
   "main": "dist/main/main.js",
-  "author": "ben",
+  "author": {
+    "name": "ben",
+    "email": "ben@localhost"
+  },
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && electron .",
+    "start": "bun run build && electron .",
     "dev": "tsc && electron .",
-    "dist": "npm run build && electron-builder --linux",
-    "dist:deb": "npm run build && electron-builder --linux deb",
-    "dist:appimage": "npm run build && electron-builder --linux AppImage",
-    "dist:rpm": "npm run build && electron-builder --linux rpm"
+    "dist": "tsc && npx electron-builder --linux",
+    "dist:deb": "tsc && npx electron-builder --linux deb",
+    "dist:appimage": "tsc && npx electron-builder --linux AppImage",
+    "dist:rpm": "tsc && npx electron-builder --linux rpm",
+    "icons": "node scripts/generate-icons.mjs"
   },
   "build": {
     "appId": "com.claude.desktop",
@@ -20,6 +24,10 @@
     "directories": {
       "output": "release"
     },
+    "files": [
+      "dist/**/*",
+      "assets/**/*"
+    ],
     "linux": {
       "target": [
         "AppImage",
@@ -27,22 +35,35 @@
       ],
       "icon": "assets/icons",
       "category": "Network",
+      "synopsis": "Claude AI Desktop Client for Linux",
       "desktop": {
-        "Name": "Claude Desktop",
-        "Comment": "Claude AI Desktop Client",
-        "Terminal": "false",
-        "Type": "Application",
-        "Categories": "Network;Chat;"
+        "entry": {
+          "Name": "Claude Desktop",
+          "Comment": "Claude AI Desktop Client",
+          "Terminal": "false",
+          "Type": "Application",
+          "Categories": "Network;Chat;InstantMessaging;",
+          "StartupWMClass": "claude-desktop"
+        }
       }
+    },
+    "deb": {
+      "depends": [
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1"
+      ]
     }
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
     "electron": "^34.0.0",
-    "electron-builder": "^25.0.0",
+    "electron-builder": "^26.8.1",
     "typescript": "^5.7.0"
-  },
-  "dependencies": {
-    "electron-store": "^10.0.0"
   }
 }
